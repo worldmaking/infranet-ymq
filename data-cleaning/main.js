@@ -2,7 +2,7 @@ const fs = require("fs"),
     path = require("path"),
     assert = require("assert")
 
-let datapath = "ymq_testdata.json"
+let datapath = "m_SampleNData.json"
 //let datapath = "dummy.json"
 
 let json = fs.readFileSync(datapath, "utf-8")
@@ -15,14 +15,8 @@ let areas = []
 let ways = []
 let buildings = []
 
-let skipkeys = [
-    'is_in:continent', 'is_in:country', 'is_in:country_code',
-    "addr:housenumber",
-    "addr:street",
-    "name",
-    "email", "website",
-]
-
+let tagList = JSON.parse(fs.readFileSync("tagsList.json", "utf-8"))
+let skipkeys = tagList;
 
 // get a list of all the node ids:
 let all_ids = {};
@@ -33,7 +27,6 @@ for (let e of elements) {
 		all_ids[e.id] = "way";
 	}
 }
-
 
 
 for (let e of elements) {
