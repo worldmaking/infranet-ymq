@@ -2,7 +2,7 @@ const fs = require("fs"),
     path = require("path"),
     assert = require("assert")
 
-let datapath = "m_SampleNData.json"
+let datapath = "m_SND.json"
 //let datapath = "dummy.json"
 
 let json = fs.readFileSync(datapath, "utf-8")

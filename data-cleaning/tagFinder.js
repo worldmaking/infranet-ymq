@@ -2,7 +2,7 @@ const fs = require("fs"),
     path = require("path"),
     assert = require("assert")
 
-let datapath = "m_SampleNData.json"
+let datapath = "m_SND.json"
 
 let json = fs.readFileSync(datapath, "utf-8")
 let data = JSON.parse(json)
@@ -14,6 +14,49 @@ let areas = []
 let ways = []
 let buildings = []
 let tagList = {}
+let tagArray = []
+let tagAList = {}
+var num = 0;
+
+// Number of each tag
+for (let e of elements){
+    let tag = e.tags;
+    for(let t in tag){
+        if(tagArray.indexOf(t) == -1){
+            tagArray.push(t, 1);
+        }
+        else if(tagArray.indexOf(t) != -1){
+            tagArray[tagArray.indexOf(t) + 1]++;
+        }
+    }
+}
+var aSort = {}
+for(var i = 0; i < tagArray.length; i++){
+    if(i % 2 == 0){
+    aSort[tagArray[i]]++;
+    aSort[tagArray[i]] = tagArray[i + 1];
+    }
+}
+
+// var aSortable = [];
+// //Converts to array
+// for (var a in aSort) {
+//     aSortable.push(a, aSort[a]);
+// }
+// aSortable.sort(function(a, b){
+//     return a[1] - b[1];
+// });
+
+// //Converts back to list
+// var aObjSorted = {}
+// aSortable.forEach(function(item){
+//     aObjSorted[item[0]]=item[1]
+// })
+//console.log(aSort);
+fs.writeFile("tagSet.json", JSON.stringify(aSort, null, "  "),  (err) => {
+    if (err) throw err;
+    console.log('Data written to file');
+});
 
 let skipkeys = [
     'building:levels', 'height', 'repair',
@@ -38,10 +81,16 @@ for (let e of elements) {
     for(let t in tag){
       if(tagList[t] != true){
         tagList[t]++;
-    }  
+ //       tagList[t] = 1;
+      }
+        else if(tagList[t] == true){
+ //           tagList[t]++;
+        }  
 }
     
 }
+
+//console.log(tagList);
 var sortable = [];
 //Converts to array
 for (var t in tagList) {
