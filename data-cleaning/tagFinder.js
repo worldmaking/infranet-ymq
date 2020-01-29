@@ -2,7 +2,7 @@ const fs = require("fs"),
     path = require("path"),
     assert = require("assert")
 
-let datapath = "m_SND.json"
+let datapath = "m_SampleNData.json"
 
 let json = fs.readFileSync(datapath, "utf-8")
 let data = JSON.parse(json)
@@ -38,26 +38,23 @@ for(var i = 0; i < tagArray.length; i++){
     }
 }
 
-// var aSortable = [];
-// //Converts to array
-// for (var a in aSort) {
-//     aSortable.push(a, aSort[a]);
-// }
-// aSortable.sort(function(a, b){
-//     return a[1] - b[1];
-// });
+var aSortable = [];
+for (var a in aSort) {
+    aSortable.push([a, aSort[a]]);
+}
 
-// //Converts back to list
-// var aObjSorted = {}
-// aSortable.forEach(function(item){
-//     aObjSorted[item[0]]=item[1]
-// })
-//console.log(aSort);
-fs.writeFile("tagSet.json", JSON.stringify(aSort, null, "  "),  (err) => {
+aSortable.sort(function(a, b) {
+    return a[1] - b[1];
+});
+var aObjSorted = {}
+aSortable.forEach(function(item){
+    aObjSorted[item[0]]=item[1]
+})
+
+fs.writeFile("tagSet.json", JSON.stringify(aObjSorted, null, "  "),  (err) => {
     if (err) throw err;
     console.log('Data written to file');
 });
-
 let skipkeys = [
     'building:levels', 'height', 'repair',
     "attraction", "highway",
