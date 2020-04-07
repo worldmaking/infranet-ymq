@@ -2,17 +2,17 @@ const fs = require("fs"),
     path = require("path"),
     assert = require("assert")
 
-let datapath = "m_SampleNData.json"
+let datapath = "m_Data.json"
 
 let json = fs.readFileSync(datapath, "utf-8")
 let data = JSON.parse(json)
 let elements = data.elements
 
 let nodes = {}
-
 let areas = []
 let ways = []
 let buildings = []
+
 let tagList = {}
 let tagArray = []
 let tagAList = {}
@@ -56,8 +56,16 @@ fs.writeFile("tagSet.json", JSON.stringify(aObjSorted, null, "  "),  (err) => {
     console.log('Data written to file');
 });
 let skipkeys = [
-    'building:levels', 'height', 'repair',
-    "attraction", "highway",
+
+    'power', 'natural', 'landuse', 'shop', 'leisure', 'service',
+    'amenity', 'aeroway', 'height', 'area', 'cycleway:left', 
+    'cycleway:right', 'cycleway', 'footway', 'sidewalk', 'railway', 
+    'building:levels', 'lanes', 'lane', 'oneway', 'highway', 
+    'building', 'area:highway', 'area:aeroway', 'building:area',
+    'historic', 'school', 'place', 'office', 'buildings', 'shelter',
+    'information', 'man_made', 'healthcare', 'craft', 'toilets',
+    'military', 'public_transport', 'station', 'bridge', 'tourism'
+    
 ]
 
 

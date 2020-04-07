@@ -2,7 +2,7 @@ const fs = require("fs"),
     path = require("path"),
     assert = require("assert")
 
-let datapath = "m_SND.json"
+let datapath = "m_Data.json"
 //let datapath = "dummy.json"
 
 let json = fs.readFileSync(datapath, "utf-8")
@@ -10,7 +10,6 @@ let data = JSON.parse(json)
 let elements = data.elements
 
 let nodes = {}
-
 let areas = []
 let ways = []
 let buildings = []
@@ -39,6 +38,10 @@ for (let e of elements) {
     }
     
     if (e.type == "way") {
+        let numnodes = e.nodes.length;
+		let first = e.nodes[0];
+		let last = e.nodes[numnodes-1];
+		let isloop = first == last;
 
     } else if (e.type == "node") {
 
@@ -48,5 +51,5 @@ for (let e of elements) {
     
 }
 
-let outpath = "cleaned.json"
+let outpath = "all.raw.json"
 fs.writeFileSync(outpath, JSON.stringify(data, null, "  "), "utf-8")
