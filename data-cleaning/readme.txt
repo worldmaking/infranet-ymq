@@ -20,8 +20,14 @@ https://www.overpass-api.de/api/interpreter?data=[out:json];(area[name="Montréa
 https://www.overpass-api.de/api/interpreter?data=[out:json];(area[name="Montréal"];)->.a;(area[name="Laval"])->.a;(node[amenity](area.a);way[amenity](area.a););out;
 
 
-This Works!!
 https://www.overpass-api.de/api/interpreter?data=[out:json];(area[name="Montréal"];)->.a;(area[name="Laval"];)->.a;(node(area.a)(45.2,-74.2,45.7,-72.1);way(area.a)(45.2,-74.2,45.7,-72.1););out;
 
 
 https://www.overpass-api.de/api/interpreter?data=[out:json];area[name="Montréal"];(node(area)(45.2,-74.2,45.7,-72.1);way(area)(45.2,-74.2,45.7,-72.1););out;area[name="Laval"];(node(area)(45.2,-74.2,45.7,-72.1);way(area)(45.2,-74.2,45.7,-72.1););out;
+
+
+This Works!!
+
+https://www.overpass-api.de/api/interpreter?data=[out:json];area[name="Laval"];(node(area)(poly:"45.7 -73.5 45.7 -73.7 45.5 -74.0 45.4 -73.9 45.4 -73.5");way(bn););(._;>;);out;
+
+https://www.overpass-api.de/api/interpreter?data=[out:json];area[name="Montréal"];(node(area)(poly:"45.7 -73.5 45.7 -73.7 45.5 -74.0 45.4 -73.9 45.4 -73.5");way(bn););(._;>;);out;
